@@ -1,4 +1,4 @@
-public class Test {
+public class test{
 
     // Step 1: Node Class
     static class Node {
@@ -15,23 +15,49 @@ public class Test {
     // Step 2: Head Node
     Node head;
 
-    public static void main(String[] args) {
+    // Step 3: Insert at Beginning
+    void insertBeginning(int data) {
 
-        // Step 3: Create LinkedList Object
-        Test list = new Test();
+        Node newNode = new Node(data);
 
-        // Step 4: Create Nodes
-        list.head = new Node(10);
+        newNode.next = head;
+        head = newNode;
+    }
 
-        Node second = new Node(20);
-        Node third = new Node(30);
+    // Step 4: Insert at End
+    void insertEnd(int data) {
 
-        // Step 5: Connect Nodes
-        list.head.next = second;
-        second.next = third;
+        Node newNode = new Node(data);
 
-        // Step 6: Display LinkedList
-        Node current = list.head;
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+
+        Node current = head;
+
+        while (current.next != null) {
+            current = current.next;
+        }
+
+        current.next = newNode;
+    }
+
+    // Step 5: Delete First Node
+    void delete() {
+
+        if (head == null) {
+            System.out.println("List is Empty");
+            return;
+        }
+
+        head = head.next;
+    }
+
+    // Step 6: Display LinkedList
+    void display() {
+
+        Node current = head;
 
         while (current != null) {
 
@@ -41,5 +67,26 @@ public class Test {
         }
 
         System.out.println("null");
+    }
+
+    // Step 7: Main Method
+    public static void main(String[] args) {
+
+        // Create Object
+        linklist list = new linklist();
+
+        // Insert Beginning
+        list.insertBeginning(20);
+        list.insertBeginning(10);
+
+        // Insert End
+        list.insertEnd(30);
+        list.insertEnd(40);
+
+        // Delete First Node
+        list.delete();
+
+        // Display LinkedList
+        list.display();
     }
 }
